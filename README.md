@@ -1,6 +1,6 @@
 ---
 title: Italian Voice Assistant
-emoji: 🇮🇹
+emoji: 🍕
 colorFrom: green
 colorTo: red
 sdk: docker
