@@ -1,0 +1,94 @@
+.background-image{
+width:100%;
+display:block;
+height:100vh;
+background-image: url('images/Amalfi.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+position:relative;
+}
+body{
+    overflow:visible;
+    margin:0;
+    padding:0;
+}
+img{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+width:30%;
+top:0%;
+outline: none;
+border:5px solid black;
+border-radius: 20px;
+}
+.microphone{
+position :absolute;
+left:50%;
+transform:translateX(-50%);
+top:82%;
+border-radius: 20%;
+width:50px;
+height:50px;
+background-color:#8B4513;
+outline: none;
+border:3px solid black;
+}
+.microphone::before{
+
+content: '';
+display: block;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+border: 3px solid black;
+margin:auto;
+
+
+}
+.wave-bar{
+display:inline-block;
+width:1.5px;
+height:50px;
+background-color:red ;
+
+margin: 0.1px;
+animation: wave 1s infinite;
+animation-play-state: paused;
+}
+@keyframes wave {
+0% {height:4px;}
+50%{height:30px;}
+100%{height:4px;}
+}
+.waveform{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+top:65%;
+width:110px;
+height:40px;
+overflow: visible;
+}
+.level-buttons{
+position :absolute;
+left:50%;
+transform:translateX(-50%);
+top:92%;
+width:100px;
+height:50px;
+outline: none;
+}
+.level-button{
+border-radius: 5px;
+width:30px;
+font-family: serif;
+color:black ;
+font-size: 18px;
+text-align: center;
+padding: 0;
+height:30px;
+background-color: #8B4513;
+border:3px solid black;
+}
