@@ -10,3 +10,4 @@ temp/
 .git
 .ogg
 *.cache
+public/images/
