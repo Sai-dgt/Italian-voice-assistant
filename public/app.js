@@ -10,7 +10,8 @@ let stream
 const LevelButton = document.querySelectorAll('.level-button')
 const levels=["beginner","intermediate","advanced"]
 let currentLevel="intermediate"
-
+let history =[]
+let currentTranscript
 LevelButton.forEach((button,index)=>{
 button.addEventListener("click",function(){
 currentLevel=levels[index]
@@ -42,22 +43,33 @@ mike_button.addEventListener("click",async function () {
      body: formData
     })
     .then(response=> response.text())
-    .then(transcript=> fetch ('/chat',{
+    .then(transcript=> {
+        
+    currentTranscript=transcript
+      return  fetch ('/chat',{
      method:"POST",
      headers:{"Content-Type":"application/json"},
      body:JSON.stringify({
      message:transcript,
      level:currentLevel,
-     history:[]
+     history:history
      })
-    }))
+    })
+})
     .then(response=> response.text())
-    .then(reply=> fetch('/speak',{
-     method:'POST',
-     headers:{"Content-Type":"application/json"},
-     body:JSON.stringify({text:reply})
-
-    }))
+    .then(reply=> {
+     
+      history.push({"role":"user","content":currentTranscript})  
+      history.push({"role":"assistant","content":reply}) 
+      history=history.slice(-10)
+      return fetch('/speak',{
+         method: 'POST',
+         headers:{"Content-Type":"application/json"},
+         body:JSON.stringify({text:reply})
+     
+    })
+})
+    
     .then(response =>response.blob())
     .then(blob=>{
 
