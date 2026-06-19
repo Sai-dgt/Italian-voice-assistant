@@ -1,6 +1,25 @@
 const bars = document.querySelectorAll('.wave-bar');
+const center= (bars.length-1)/2
+const minheight=3
+const maxheight=30
+const barWidth=2
+const gap = 3
+const waveformWidth=120
+const totalWidth= bars.length*barWidth + (bars.length-1)*gap
+const startX= (waveformWidth-totalWidth)/2
+let intervalId
+bars.forEach((bar,index)=>{
+bar.style.left=`${startX + index*(barWidth+gap)}px`
+})
 bars.forEach((bar,index)=>{
 bar.style.animationDelay = `${index*0.05}s`;
+
+const distance=Math.abs(index-center);
+let normalized= distance/center
+const curve = Math.cos(normalized*(Math.PI/2))
+
+bar.style.height = `${Math.round(minheight + (maxheight - minheight) * curve)}px`;
+bar.dataset.restingHeight=bar.style.height
 });
 let isRecording= false
 const mike_button=document.querySelector('.microphone');
@@ -76,12 +95,22 @@ mike_button.addEventListener("click",async function () {
         const audio= new Audio(URL.createObjectURL(blob))
         audio.play()
         audio.onplaying=function (){
-           bars.forEach(bar=>bar.style.animationPlayState="running")
+         intervalId=setInterval(function(){
+         bars.forEach((bar,index)=>{
+         const restingValue=parseFloat(bar.dataset.restingHeight)
+         const randomHeight= Math.round(minheight + Math.random() * (restingValue - minheight))
+         bar.style.height=`${randomHeight}px`
+
+         })},150);
+          
            audio.onended=function(){
-           bars.forEach(bar=>bar.style.animationPlayState="paused")
+           clearInterval(intervalId)
+           bars.forEach((bar,index)=>{
+            bar.style.height=bar.dataset.restingHeight
 
+           })
            }
-
+           
         }
     })
     };
