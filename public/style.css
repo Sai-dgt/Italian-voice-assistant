@@ -35,7 +35,7 @@ background-color:#8B4513;
 outline: none;
 border:3px solid black;
 }
-.microphone.recording.before{
+.microphone.recording::before{
     background-color: #8B0000;
 }
 .microphone::before{
