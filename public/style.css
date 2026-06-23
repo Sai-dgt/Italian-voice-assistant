@@ -35,6 +35,9 @@ background-color:#8B4513;
 outline: none;
 border:3px solid black;
 }
+.microphone.recording.before{
+    background-color: #8B0000;
+}
 .microphone::before{
 
 content: '';
@@ -44,9 +47,9 @@ height: 20px;
 border-radius: 50%;
 border: 3px solid black;
 margin:auto;
-
-
 }
+/*.microphone.recording::before{
+    background-color: red;}*/
 .wave-bar{
 bottom:0;
 position:absolute;

@@ -42,6 +42,7 @@ mike_button.addEventListener("click",async function () {
    try{
    
      if (isRecording===false){isRecording=true  ;
+    mike_button.classList.add("recording");
     stream= await navigator.mediaDevices.getUserMedia({audio:true});
     chunks=[]
     media_recorder=new MediaRecorder (stream)
@@ -52,6 +53,7 @@ mike_button.addEventListener("click",async function () {
     
     media_recorder.onstop=function(){
     isRecording=false
+    mike_button.classList.remove("recording");
     stream.getTracks().forEach(track => track.stop())        
    
     const blob = new Blob (chunks, {type:'audio/webm'})
