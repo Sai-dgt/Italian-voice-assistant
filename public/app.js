@@ -8,6 +8,8 @@ const waveformWidth=120
 const totalWidth= bars.length*barWidth + (bars.length-1)*gap
 const startX= (waveformWidth-totalWidth)/2
 let intervalId
+let thinkingRecordingId
+let isForward=true
 bars.forEach((bar,index)=>{
 bar.style.left=`${startX + index*(barWidth+gap)}px`
 })
@@ -52,8 +54,25 @@ mike_button.addEventListener("click",async function () {
     };
     
     media_recorder.onstop=function(){
+    bars.forEach((bar,index)=>{
+      bar.style.animationPlayState="running"
+      bar.style.animationDuration="1.5s"
+    })
+    thinkingRecordingId=setInterval(function(){
+      isForward=!isForward
+      bars.forEach((bar,index)=>{
+        const delay = isForward ? index*0.05 : (bars.length-1-index)*0.05
+        bar.style.animation = 'none'
+        void bar.offsetWidth
+        bar.style.animation = ''
+        bar.style.animationPlayState="running"
+        bar.style.animationDuration="1.5s"
+        bar.style.animationDelay=`${delay}s`
+      })
+    },3000)
     isRecording=false
     mike_button.classList.remove("recording");
+    
     stream.getTracks().forEach(track => track.stop())        
    
     const blob = new Blob (chunks, {type:'audio/webm'})
@@ -97,6 +116,11 @@ mike_button.addEventListener("click",async function () {
         const audio= new Audio(URL.createObjectURL(blob))
         audio.play()
         audio.onplaying=function (){
+          clearInterval(thinkingRecordingId)
+          bars.forEach((bar,index)=>{
+            bar.style.animationPlayState="paused"
+            bar.style.animationDuration=""
+          })
          intervalId=setInterval(function(){
          bars.forEach((bar,index)=>{
          const restingValue=parseFloat(bar.dataset.restingHeight)

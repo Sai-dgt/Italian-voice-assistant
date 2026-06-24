@@ -58,7 +58,7 @@ display:block;
 background-color:#8B4513 ;
 line-height:normal;
 margin: 0;
-animation: wave 1s infinite;
+animation: wave 1.5s infinite;
 animation-play-state: paused;
 transition: height 0.1s ease-in-out;
 }
