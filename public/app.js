@@ -134,7 +134,7 @@ mike_button.addEventListener("click",async function () {
     })
     };
     media_recorder.start()
-    setTimeout(()=>media_recorder.stop(),15000);
+    setTimeout(()=>media_recorder.stop(),20000);
     
    
      }else {
