@@ -36,6 +36,7 @@ let currentTranscript
 LevelButton.forEach((button,index)=>{
 button.addEventListener("click",function(){
 currentLevel=levels[index]
+mike_button.style.display="block"
 })
 })
     
