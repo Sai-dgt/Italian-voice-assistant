@@ -57,6 +57,7 @@ mike_button.addEventListener("click",async function () {
     bars.forEach((bar,index)=>{
       bar.style.animation=""
       void bar.offsetWidth
+      bar.style.animationDelay = `${index*0.05}s`;
       bar.style.animationPlayState="running"
       bar.style.animationDuration="1s"
     })
