@@ -3,7 +3,7 @@ const center= (bars.length-1)/2
 const minheight=3
 const maxheight=30
 const barWidth=2
-const gap = 3
+const gap = 1
 const waveformWidth=120
 const totalWidth= bars.length*barWidth + (bars.length-1)*gap
 const startX= (waveformWidth-totalWidth)/2
@@ -20,7 +20,7 @@ const distance=Math.abs(index-center);
 let normalized= distance/center
 const curve = 0.5*(1+Math.cos(normalized*Math.PI))
 
-bar.style.height = `${Math.round(minheight + (maxheight - minheight) * curve)}px`;
+bar.style.height = `${minheight + (maxheight - minheight) * curve}px`;
 bar.dataset.restingHeight=bar.style.height
 });
 let isRecording= false
