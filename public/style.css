@@ -2,11 +2,12 @@
 width:100%;
 display:block;
 height:100vh;
-background-image: url('images/Amalfi.png');
+background-image: url('images/strada.png');
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;
 position:relative;
+border:5px solid black
 }
 body{
     overflow:visible;
