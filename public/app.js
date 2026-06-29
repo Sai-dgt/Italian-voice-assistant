@@ -18,7 +18,7 @@ bar.style.animationDelay = `${index*0.05}s`;
 
 const distance=Math.abs(index-center);
 let normalized= distance/center
-const curve = 0.5*(1+Math.cos)
+const curve = 0.5*(1+Math.cos(normalized*Math.PI))
 
 bar.style.height = `${Math.round(minheight + (maxheight - minheight) * curve)}px`;
 bar.dataset.restingHeight=bar.style.height
