@@ -35,7 +35,7 @@ def request(body: ChatRequest):
     response = client.chat.completions.create(
         max_tokens=200,
         model="gpt-4o-mini",
-        messages=[{"role": "system", "content": prompt}] + body.history[-5:] + [{"role": "user", "content": body.message}]
+        messages=[{"role": "system", "content": prompt}] + body.history[-6:] + [{"role": "user", "content": body.message}]
     )
     return response.choices[0].message.content
 

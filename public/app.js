@@ -94,7 +94,7 @@ mike_button.addEventListener("click",async function () {
      
       history.push({"role":"user","content":currentTranscript})  
       history.push({"role":"assistant","content":reply}) 
-      history=history.slice(-10)
+      history=history.slice(-6)
       return fetch('/speak',{
          method: 'POST',
          headers:{"Content-Type":"application/json"},
@@ -131,6 +131,16 @@ mike_button.addEventListener("click",async function () {
            }
            
         }
+    })
+    .catch(error=>{
+    console.error("conversation pipeline failed:",error)
+    bars.forEach((bar,index)=>{
+    bar.style.animation="none"
+    bar.style.height=bar.dataset.restingHeight
+    })
+
+    alert("Something went wrong, please try again")
+
     })
     };
     media_recorder.start()
